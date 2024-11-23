@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video.js Player</title>
+    <link href="https://vjs.zencdn.net/8.5.3/video-js.css" rel="stylesheet" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: black;
+      }
+
+      .vjs-fullscreen {
+        height: 100% !important;
+        width: 100% !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <video-js id="player" class="vjs-default-skin" controls preload="auto" autoplay muted></video-js>
+
+    <script src="https://vjs.zencdn.net/8.5.3/video.min.js"></script>
+    <script>
+      // Helper to get query parameters
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Get the 'link' parameter from the URL
+      const m3u8Url = getQueryParam('link');
+
+      // Check if a valid URL is provided
+      if (m3u8Url) {
+        const player = videojs('player', {
+          fluid: true, // Allows responsive fullscreen
+          autoplay: true,
+          controls: true,
+          preload: 'auto',
+          techOrder: ['html5'],
+          sources: [{
+        src: m3u8Url,
+        type: 'application/x-mpegURL'
+          }]
+        });
+
+        // Set player to full height of the HTML page
+        player.ready(() => {
+          player.height(window.innerHeight);
+        });
+      } else {
+        alert('No valid "link" parameter found in the URL.');
+      }
+    </script>
+  </body>
+
+</html>
