@@ -3,11 +3,18 @@
 
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>m3u8 Player</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="jostasik.com" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://jostasik.com/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://vjs.zencdn.net/8.5.3/video-js.css" rel="stylesheet" />
     <style>
-      /* center the player and reset css */
+      
       html,
       body {
         margin: 0;
@@ -19,33 +26,32 @@
         align-items: center;
         background-color: #242424;
       }
-
       #player {
         width: 100%;
         height: 100%;
       }
-
-      /* =make the bar static and below the bottom of the image */
       .vjs-default-skin .vjs-control-bar {
         position: absolute;
         bottom: 0
       }
     </style>
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "gmi5afh0vj");
+    </script>
   </head>
 
   <body>
-
     <video-js id="player" class="vjs-default-skin" controls preload="auto" autoplay muted></video-js>
-
     <script src="https://vjs.zencdn.net/8.5.3/video.min.js"></script>
     <script>
-      // Helper to get query parameters
       function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(param);
       }
-
-      // Get the 'link' parameter from the URL
       const m3u8Url = getQueryParam('link');
 
       // Check if a valid URL is provided
@@ -54,7 +60,6 @@
           // default options
           autoplay: true,
           controls: true,
-
           preload: 'auto',
 
           techOrder: ['html5'],
